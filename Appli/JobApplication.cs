@@ -1,21 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Appli
 {
-    internal enum JobApplicationStatus
+    public enum JobApplicationStatus
     {
         Applied,
         Interviewing,
         Offered,
         Rejected
     }
-    internal class JobApplication
+    public class JobApplication
     {
-        public string Company { get; set; }
-        public string Roles { get; set; }
-        public string Link { get; set; }
+        public Guid Id { get; set; }
+        [Required(ErrorMessage = "Company name is required")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "Company name cannot be longer than 100 characters or shorter than 3 characters")]
+        public required string Company { get; set; }
+        [Required(ErrorMessage = "Role is required")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "Role name cannot be longer than 100 characters or shorter than 3 characters")]
+        public required string Role { get; set; }
+        [Required(ErrorMessage = "Link is required")]
+        [Url(ErrorMessage = "Link must be a valid URL")]
+        public string? Link { get; set; }
+        [Required(ErrorMessage = "You need to set an application status")]
         public JobApplicationStatus Status { get; set; }
     }
 }

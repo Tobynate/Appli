@@ -1,44 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Appli
 {
-    internal static class JobApplicationTracker
+    internal class JobApplicationTracker
     {
-        internal static List<JobApplication> Applications { get; set; }
-        internal static JobApplication Application { get; set; }
+        private readonly List<JobApplication> _applications = [];
 
-        internal static void AddApplication(JobApplication application)
+        internal void AddApplication(JobApplication application)
         {
-            try
-            {
-                application.ValidateJobApplication();
-                if (Applications == null)
-                {
-                    Applications = new List<JobApplication>();
-                }
-                Applications.Add(application);
-            }
-            catch (Exception ex)
-            {
-                ValidationHelper.ExceptionHandler(ex);
-            }
-        }
-        internal static void RemoveApplication(JobApplication application)
-        {
-            try
-            {
-                application.ValidateJobApplication();
-                Applications?.Remove(application);
-            }
-            catch (Exception ex)
-            {
-                ValidationHelper.ExceptionHandler(ex);
-            }
+            application.Id = Guid.NewGuid();
+            var context = new ValidationContext(application);
+            Validator.ValidateObject(application, context, validateAllProperties: true);
+            _applications.Add(application);
         }
 
-
+        internal void RemoveApplication(Guid id)
+        {
+            _applications.RemoveAll(a => a.Id == id);
+        }
     }
 }

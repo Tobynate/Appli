@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace Appli
 {
     public static class ValidationHelper
     {
-        internal static void ValidateJobApplication(this JobApplication jobApplication)
+        public static void ValidateJobApplication(this JobApplication jobApplication)
         {
-            if (string.IsNullOrWhiteSpace(jobApplication.Company) || string.IsNullOrWhiteSpace(jobApplication.Roles) || string.IsNullOrWhiteSpace(jobApplication.Link))
+            if (string.IsNullOrWhiteSpace(jobApplication.Company) || string.IsNullOrWhiteSpace(jobApplication.Role) || string.IsNullOrWhiteSpace(jobApplication.Link))
             {
                 throw new ArgumentException("Company, Roles, and Link cannot be null or empty.");
             }
@@ -22,7 +19,7 @@ namespace Appli
             }
         }
 
-        public static void ExceptionHandler(Exception ex)
+        public static void ExceptionHandler(ArgumentException ex)
         {
             Console.WriteLine($"Error: {ex.Message}");
         }
