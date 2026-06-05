@@ -6,7 +6,7 @@ remote roles. The next iteration will be a full-stack web app, but I
 wanted a working version in my hands first — and to relearn .NET
 fundamentals in the process.
 
-![Screenshot of Appli running in the terminal](docs/screenshot.png)
+![Screenshot of Appli running in the terminal](/Docs/screenshot.png)
 
 ## Features
 
