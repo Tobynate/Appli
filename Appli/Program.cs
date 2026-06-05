@@ -84,13 +84,13 @@ void DisplayMenu()
 {
     jobApplications = (tracker.FetchApplications()).ToList();
     // Table header
-    Console.WriteLine("{0,-5} {1,-25} {2, -15} {3,-50} {4, -15}", "S/N", "Company", "Role", "Link", "Status");
+    Console.WriteLine("{0,-5} {1,-25} {2, -25} {3,-50} {4, -15}", "S/N", "Company", "Role", "Link", "Status");
     Console.WriteLine(new string('-', 120));
 
     // Table rows
     foreach (JobApplication application in jobApplications)
     {
-        Console.WriteLine("{0,-5} {1,-25} {2, -15} {3,-30} {4, -15}", jobApplications.IndexOf(application) + 1, application.Company, application.Role, application.Link, application.Status);
+        Console.WriteLine("{0,-5} {1,-25} {2, -25} {3,-50} {4, -15}", jobApplications.IndexOf(application) + 1, application.Company, application.Role, application.Link, application.Status);
     }
     Console.WriteLine();
     Console.WriteLine();
